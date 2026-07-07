@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ពាក្យសុំត្រូវគ្នាវិញ - SAMBATH DAVIT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&family=Moul&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           ១. កូដដេគ័រពណ៌ និងរូបរាង (CSS Styles)
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background-color: #eaeaea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        /* ប្រអប់កណ្តាល (ខ្នាតក្រដាស A4) */
+        .cv-container {
+            display: flex;
+            width: 794px; 
+            min-height: 1123px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        /* ផ្នែកចំហៀងពណ៌ផ្កាឈូក */
+        .sidebar {
+            width: 35%;
+            background-color: #fd476d; 
+            color: #ffffff;
+            padding: 40px 25px;
+        }
+
+        .profile-box {
+            width: 170px;
+            height: 190px;
+            margin: 0 auto 40px auto;
+            border: 3px solid #ffffff;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #ccc; /* ពណ៌ផ្ទៃក្រោយបណ្តោះអាសន្នបើគ្មានរូបថត */
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .divider-white {
+            width: 100%;
+            height: 1.5px;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .info-block {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .info-block .label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .info-block .value {
+            opacity: 0.9;
+        }
+
+        /* ផ្នែកមាតិកាខាងស្តាំពណ៌ស */
+        .main-content {
+            width: 65%;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-family: 'Moul', cursive; 
+            color: #fd476d;
+            font-size: 1.9rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .objective {
+            font-size: 1rem;
+            color: #555555;
+            margin-bottom: 35px;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #fd476d;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .divider-pink {
+            width: 100%;
+            height: 1.5px;
+            background-color: #fd476d;
+            margin-bottom: 15px;
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+        }
+
+        .item-sub-title {
+            font-size: 0.95rem;
+            color: #000000;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .item-detail {
+            font-size: 0.9rem;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* បញ្ជីគុណសម្បត្តិ */
+        .highlights-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .highlights-list li {
+            font-size: 0.9rem;
+            color: #333333;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .highlights-list li::before {
+            content: "•";
+            color: #333333;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: -1px;
+        }
+
+        .promise-text {
+            font-size: 0.9rem;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* ផ្នែកហត្ថលេខាខាងក្រោម */
+        .signature-section {
+            margin-top: auto; 
+            text-align: center;
+            align-self: flex-end;
+            width: 250px;
+            padding-top: 40px;
+        }
+
+        .dashed-line {
+            width: 100%;
+            border-top: 1px dashed #aaaaaa;
+            margin-bottom: 20px;
+        }
+
+        .sig-label {
+            font-size: 0.85rem;
+            color: #444444;
+            margin-bottom: 30px;
+        }
+
+        .candidate-name {
+            font-family: sans-serif;
+            font-weight: bold;
+            color: #0e3860; 
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .candidate-name:hover {
+            transform: scale(1.05);
+            color: #fd476d;
+        }
+
+        /* Responsive សម្រាប់អេក្រង់ទូរស័ព្ទដៃ */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .cv-container { flex-direction: column; width: 100%; min-height: auto; }
+            .sidebar { width: 100%; text-align: center; }
+            .main-content { width: 100%; padding: 30px 20px; }
+            .signature-section { align-self: center; margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cv-container">
+        <aside class="sidebar">
+            <div class="profile-box">
+                <a href=""><img src="pic.jpg" alt="រូបថតបេក្ខជន" class="avatar" id="profilePic"></a>
+            </div>
+
+            <div class="sidebar-info">
+                <h2 class="sidebar-title">ព័ត៌មានផ្ទាល់ខ្លួន</h2>
+                <div class="divider-white"></div>
+                
+                <div class="info-block">
+                    <span class="label">ស្ថានភាព៖</span>
+                    <span class="value">នៅលីវ (Single)</span>
+                </div>
+
+                <div class="info-block">
+                    <span class="label">ចំណូលចិត្ត៖</span>
+                    <span class="value">បាល់ទាត់, ហ្គេម, និងមើលថែអ្នក</span>
+                </div>
+
+                <div class="info-block">
+                    <span class="label">តេឡេក្រាម៖</span>
+                    <span class="value">@b sl o</span>
+                </div>
+
+                <h2 class="sidebar-title" style="margin-top: 40px;">ជំនាញពិសេស</h2>
+                <div class="divider-white"></div>
+                
+                <div class="info-block">
+                    <span class="value">sdab somdey 100%</span>
+                </div>
+                <div class="info-block">
+                    <span class="value">merl thae besdong 100%</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="cv-header">
+                <!-- <h1​ style="margin-left: 70px;" class="main-title">ខ្ញុំបាទវីតស្មោះស្នេហ៏</h1> -->
+                 <h1 class="main-title">ពាក្យសុំស្រឡាញ់</h1>
+                <p class="objective">គោលបំណង : បងសូមស្រឡាញ់បានអត់អូនសម្លាញ់</p>
+            </header>
+
+            <section class="section">
+                <h2 class="section-title">បទពិសោធន៍</h2>
+                <div class="divider-pink"></div>
+                
+                <div class="content-item">
+                    <h3 class="item-sub-title">អ្នកជំនាញលួងលោម (Expert Comforter)</h3>
+                    <p class="item-detail">មានបទពិសោធន៍ខ្ពស់ក្នុងការយល់ចិត្ត ទោះបីជាខាងស្រីឆ្លើយថា "អត់មានអីទេ" ក៏ដោយ។ អាចប្រើពាក្យផ្អែមល្ហែមបាន ២៤ ម៉ោង។</p>
+                </div>
+
+                <div class="content-item">
+                    <h3 class="item-sub-title">អ្នកដឹកជញ្ជូនបេះដូង (Personal Driver)</h3>
+                    <p class="item-detail">សេវាកម្មឌុបទៅញ៉ាំអី ឬដើរលេងដោយមិនគិតថ្លៃ និងមិនរអ៊ូរទាំ ទោះរុះរាលណាត់យ៉ាងណាក៏ដោយ។</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">គុណសម្បត្តិលេចធ្លោ</h2>
+                <div class="divider-pink"></div>
+                <ul class="highlights-list">
+                    <li>ស្មោះត្រង់បំផុត (លេខ ១ ក្នុងលោក)</li>
+                    <li>មិនចេះដើរលេងយប់ ចេះតែនៅផ្ទះចាំ Reply message</li>
+                    <li>ចងចាំរាល់ថ្ងៃសំខាន់ៗ មិនដែលភ្លេច</li>
+                    <li>មានសុជីវធម៌ និងចេះគោរពចាស់ទុំ</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">សេចក្តីសន្យា</h2>
+                <div class="divider-pink"></div>
+                <p class="promise-text">
+                    "ប្រសិនបើអ្នកជ្រើសរើសយកខ្ញុំ ខ្ញុំសន្យានឹងធ្វើឱ្យអ្នកក្លាយជាមនុស្សដែលមានសំណាងជាងគេ។ មិនធ្វើឱ្យយំ មិនធ្វើឱ្យពិបាកចិត្ត។"
+                </p>
+            </section>
+
+            <footer class="signature-section">
+                <div class="dashed-line"></div>
+                <p class="sig-label">ចុះហត្ថលេខាបេក្ខជន</p>
+                <p class="candidate-name" id="signatureBtn">[SAMBATH DAVIT]</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const signatureBtn = document.getElementById("signatureBtn");
+            const profilePic = document.getElementById("profilePic");
+
+            // ចុចលើឈ្មោះបេក្ខជន ដើម្បីបង្ហាញ Alert សារបេះដូង
+            signatureBtn.addEventListener("click", () => {
+                alert("💖 បងសូមសន្យាថានិងមើលថែអូនដោយបេះដូងស្មោះរបស់បង  ");
+            });
+
+            // ដាក់ម៉ៅលើរូបថតដើម្បីពង្រីក (Zoom Effect)
+            profilePic.addEventListener("mouseenter", () => {
+                profilePic.style.transform = "scale(1.1)";
+            });
+            profilePic.addEventListener("mouseleave", () => {
+                profilePic.style.transform = "scale(1)";
+            });
+        });
+    </script>
+</body>
+</html>
